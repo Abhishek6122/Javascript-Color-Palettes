@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palettes</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 50px;
+        text-align: center;
+        padding: 15px 0;
+        letter-spacing: 3px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        position: relative;
+    }
+
+    h1::before {
+        position: absolute;
+        bottom: 5px;
+        content: '';
+        width: 25%;
+        height: 5px;
+        border-radius: 10px;
+        background: #2f3640;
+    }
+
+    main {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    main .colors {
+        width: 24%;
+        height: 300px;
+        background: var(--color);
+        margin: 5px 0;
+        cursor: pointer;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+        position: relative;
+        transition: .2s ease-in-out;
+    }
+
+    main .colors:active {
+        transform: scale(.98);
+    }
+
+    main .colors span {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        text-align: center;
+        color: ghostwhite;
+        font-size: 40px;
+        font-family: sans-serif;
+        padding: 10px 0;
+        pointer-events: none;
+    }
+
+    main .colors .copy {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        line-height: 250px;
+        text-align: center;
+        color: ghostwhite;
+        background: rgba(0, 0, 0, .1);
+        font-size: 60px;
+        font-family: sans-serif;
+        padding: 10px 0;
+        pointer-events: none;
+        opacity: 0;
+        transition: .2s ease-in-out;
+    }
+
+    main .colors .copy_2 {
+        opacity: 1;
+    }
+    @media (max-width: 1000px){
+        main .colors{
+            width: 49%;
+        }
+        h1{
+            font-size: 30px;
+        }
+    }
+    @media (max-width: 550px){
+        main .colors{
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+    <h1>Colors Palettes</h1>
+    <main>
+        <div class="colors" style="--color: #00a8ff;">
+            <span>#00a8ff</span>
+            <div class="copy">Copied</div>
+        </div>
+        <div class="colors" style="--color: #9c88ff;">
+            <span>#9c88ff</span>
+            <div class="copy">Copied</div>
+        </div>
+        <div class="colors" style="--color: #4cd137;">
+            <span>#4cd137</span>
+            <div class="copy">Copied</div>
+        </div>
+        <div class="colors" style="--color: #fbc531;">
+            <span>#fbc531</span>
+            <div class="copy">Copied</div>
+        </div>
+        <div class="colors" style="--color: #e84118;">
+            <span>#e84118</span>
+            <div class="copy">Copied</div>
+        </div>
+        <div class="colors" style="--color: #badc58;">
+            <span>#badc58</span>
+            <div class="copy">Copied</div>
+        </div>
+        <div class="colors" style="--color: #4834d4;">
+            <span>#4834d4</span>
+            <div class="copy">Copied</div>
+        </div>
+        <div class="colors" style="--color: #34495e;">
+            <span>#34495e</span>
+            <div class="copy">Copied</div>
+        </div>
+    </main>
+    <script>
+        let colors = document.querySelectorAll("main .colors");
+        let codes = document.querySelectorAll("main .colors span");
+        let codesCopy = document.querySelectorAll("main .colors .copy");
+        let sound = new Audio("../Videos/beep sound.wav");
+
+        for (let i = 0; i < colors.length; i++) {
+            colors[i].addEventListener('click', () => {
+                for (let i = 0; i < codes.length; i++) { }
+                for (let i = 0; i < codesCopy.length; i++) { }
+                codesCopy[i].classList.add("copy_2");
+                setTimeout(() => {
+                    codesCopy[i].classList.remove("copy_2");
+                }, 1000)
+                navigator.clipboard.writeText(codes[i].innerHTML);
+                sound.play();
+            })
+        }
+    </script>
+</body>
+
+</html>
